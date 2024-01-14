@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import STATUS_CODE from "../constants/statusCode.js";
-import User from "../models/user.js";
+import User from "../models/User.js";
 
 const authMiddleware = async (req, res, next) => {
   let token;
