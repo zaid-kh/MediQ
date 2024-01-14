@@ -44,7 +44,7 @@ function Dashboard() {
 
   return (
     <>
-       {/* <ThemeProvider theme={theme}>
+       <ThemeProvider theme={theme}>
       <div
         style={{
           display: 'flex',
@@ -82,10 +82,9 @@ function Dashboard() {
       <footer>
         <NavBar />
       </footer>
-      </ThemeProvider> */}
+      </ThemeProvider>
 
-      <QuestionComponent question={"howkf kffj"} />
-      <AnswerComponent answer={"fkfkfk"}/>
+    
     </>
   );
 }
