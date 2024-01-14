@@ -15,25 +15,34 @@ import {
     Select,
     Slide,
 } from "@mui/material";
-import { useState } from "react";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useRef, useState } from "react";
+import { useAuth } from "../../context/AuthContext";
+import { format } from "date-fns";
+import dayjs from "dayjs";
 
 export default function Register() {
     const [gender, setGender] = useState("");
-    const handleSubmit = (event) => {
+    const genderRef = useRef();
+    const dateRef = useRef();
+    const { register } = useAuth();
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
+        console.log(dateRef.current.value);
+        console.log(genderRef.current.value);
+        const userInfo = {
             email: data.get("email"),
             password: data.get("password"),
-            firstName: data.get("firstName"),
-            lastName: data.get("lastName"),
-            age: data.get("yearOfBirth"),
+            username: data.get("username"),
+            yearOfBirth: dateRef.current.value,
             country: data.get("country"),
-            gender,
-        });
-    };
-    const handleChange = (e) => {
-        setGender(e.target.value);
+            gender: genderRef.current.value,
+        };
+        console.log(userInfo);
+        await register(userInfo);
     };
 
     return (
@@ -61,25 +70,15 @@ export default function Register() {
                         sx={{ mt: 3 }}
                     >
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
+                            <Grid item xs={12}>
                                 <TextField
                                     autoComplete="given-name"
-                                    name="firstName"
+                                    name="username"
                                     required
                                     fullWidth
-                                    id="firstName"
-                                    label="First Name"
+                                    id="username"
+                                    label="Display Name"
                                     autoFocus
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="family-name"
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -88,8 +87,9 @@ export default function Register() {
                                     <Select
                                         id="gender"
                                         label="Gender"
-                                        value={gender}
-                                        onChange={handleChange}
+                                        defaultValue="Male"
+                                        inputRef={genderRef}
+                                        required
                                     >
                                         <MenuItem value="Male">Male</MenuItem>
                                         <MenuItem value="Female">
@@ -120,15 +120,14 @@ export default function Register() {
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <TextField
-                                    name="yearOfBirth"
-                                    required
-                                    fullWidth
-                                    id="yearOfBirth"
-                                    label="Year of Birth"
-                                    autoFocus
-                                    type="number"
-                                />
+                                <LocalizationProvider
+                                    dateAdapter={AdapterDayjs}
+                                >
+                                    <DatePicker
+                                        label="Date of Birth"
+                                        inputRef={dateRef}
+                                    />
+                                </LocalizationProvider>
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
