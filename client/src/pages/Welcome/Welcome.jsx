@@ -11,6 +11,7 @@ export default function Welcome() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          gap: "1rem",
           height: "100vh",
         }}
       >
@@ -21,7 +22,7 @@ export default function Welcome() {
             color: "primary.main",
           }}
         />
-        <Typography variant="h4">
+        <Typography variant="h4" sx={{ textAlign: "center" }}>
           Welcome To MediQ Your AI Medical Assistant
         </Typography>
         <Button
