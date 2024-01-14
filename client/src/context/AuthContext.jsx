@@ -34,7 +34,7 @@ export function AuthProvider({ children }) {
     };
     const register = async (userInfo) => {
         try {
-            const result = await axios.post(URL + "register", userInfo);
+            const result = await axios.post(URL, userInfo);
             console.log(result);
             setAccessToken(result.data.accessToken);
             localStorage.setItem(
