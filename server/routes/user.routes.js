@@ -19,6 +19,6 @@ router.get("/:userId", getUserById);
 router.post("/", userSignUp);
 
 // POST - User Login
-
 router.post("/login", userLogin);
+
 export default router;
