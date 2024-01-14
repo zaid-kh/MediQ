@@ -15,21 +15,22 @@ export default function Profile() {
     const [user, setUser] = useState();
     useEffect(() => {
         const token = localStorage.getItem("token");
-
-        const fetchData = async () => {
-            const result = await axios.get(
-                URL + `/${jwtDecode(token).userId}`,
-                {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: "Bearer " + token,
-                    },
-                }
-            );
-            console.log(result.data);
-            setUser(result.data);
-        };
-        fetchData();
+        if (token !== null) {
+            const fetchData = async () => {
+                const result = await axios.get(
+                    URL + `/${jwtDecode(token).userId}`,
+                    {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: "Bearer " + token,
+                        },
+                    }
+                );
+                console.log(result.data);
+                setUser(result.data);
+            };
+            fetchData();
+        }
     }, []);
     const handleLogout = async () => {
         await logout();
@@ -71,16 +72,15 @@ export default function Profile() {
                     </div>
                 </Link>
                 <Divider orientation="horizontal" sx={{ width: 1 }} />
-                <Link>
-                    <div
-                        className="menu-item"
-                        style={{ color: "red" }}
-                        onClick={handleLogout}
-                    >
-                        <LogoutIcon color="error" />
-                        Logout
-                    </div>
-                </Link>
+
+                <div
+                    className="menu-item"
+                    style={{ color: "red" }}
+                    onClick={handleLogout}
+                >
+                    <LogoutIcon color="error" />
+                    Logout
+                </div>
             </div>
         </div>
     );
