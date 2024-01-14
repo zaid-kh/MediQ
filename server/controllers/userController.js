@@ -2,7 +2,7 @@ import STATUS_CODE from "../constants/statusCode.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
-import {faker} from "@faker-js/faker";
+import { faker } from "@faker-js/faker";
 
 export const getAllUsers = async (req, res, next) => {
   try {
