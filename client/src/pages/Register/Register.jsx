@@ -1,6 +1,5 @@
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
@@ -15,31 +14,41 @@ import {
     Select,
     Slide,
 } from "@mui/material";
-import { useState } from "react";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { useRef } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Register() {
-    const [gender, setGender] = useState("");
-    const handleSubmit = (event) => {
+    const genderRef = useRef();
+    const dateRef = useRef();
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const usernameRef = useRef();
+    const countryRef = useRef();
+    const { register } = useAuth();
+    const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log({
-            email: data.get("email"),
-            password: data.get("password"),
-            firstName: data.get("firstName"),
-            lastName: data.get("lastName"),
-            age: data.get("yearOfBirth"),
-            country: data.get("country"),
-            gender,
-        });
-    };
-    const handleChange = (e) => {
-        setGender(e.target.value);
+        const splitDate = dateRef.current.value.split("/");
+        const newDate = [splitDate[2], splitDate[0], splitDate[1]];
+        const selectedDate = newDate.join("-");
+        console.log(selectedDate);
+        const userInfo = {
+            email: emailRef.current.value,
+            password: passwordRef.current.value,
+            username: usernameRef.current.value,
+            dateOfBirth: selectedDate,
+            country: countryRef.current.value,
+            gender: genderRef.current.value,
+        };
+        console.log(userInfo);
+        await register(userInfo);
     };
 
     return (
         <Slide direction="left" in>
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
                 <Box
                     sx={{
                         marginTop: 8,
@@ -56,30 +65,20 @@ export default function Register() {
                     </Typography>
                     <Box
                         component="form"
-                        noValidate
                         onSubmit={handleSubmit}
                         sx={{ mt: 3 }}
                     >
                         <Grid container spacing={2}>
-                            <Grid item xs={12} sm={6}>
+                            <Grid item xs={12}>
                                 <TextField
                                     autoComplete="given-name"
-                                    name="firstName"
+                                    name="username"
                                     required
                                     fullWidth
-                                    id="firstName"
-                                    label="First Name"
+                                    id="username"
+                                    label="Display Name"
                                     autoFocus
-                                />
-                            </Grid>
-                            <Grid item xs={12} sm={6}>
-                                <TextField
-                                    required
-                                    fullWidth
-                                    id="lastName"
-                                    label="Last Name"
-                                    name="lastName"
-                                    autoComplete="family-name"
+                                    inputRef={usernameRef}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -88,8 +87,9 @@ export default function Register() {
                                     <Select
                                         id="gender"
                                         label="Gender"
-                                        value={gender}
-                                        onChange={handleChange}
+                                        defaultValue="Male"
+                                        inputRef={genderRef}
+                                        required
                                     >
                                         <MenuItem value="Male">Male</MenuItem>
                                         <MenuItem value="Female">
@@ -105,6 +105,7 @@ export default function Register() {
                                     id="email"
                                     label="Email Address"
                                     name="email"
+                                    inputRef={emailRef}
                                     autoComplete="email"
                                 />
                             </Grid>
@@ -116,19 +117,19 @@ export default function Register() {
                                     label="Password"
                                     type="password"
                                     id="password"
+                                    inputRef={passwordRef}
                                     autoComplete="new-password"
                                 />
                             </Grid>
                             <Grid item xs={12} sm={6}>
-                                <TextField
-                                    name="yearOfBirth"
-                                    required
-                                    fullWidth
-                                    id="yearOfBirth"
-                                    label="Year of Birth"
-                                    autoFocus
-                                    type="number"
-                                />
+                                <LocalizationProvider
+                                    dateAdapter={AdapterDayjs}
+                                >
+                                    <DatePicker
+                                        label="Date of Birth"
+                                        inputRef={dateRef}
+                                    />
+                                </LocalizationProvider>
                             </Grid>
                             <Grid item xs={12} sm={6}>
                                 <TextField
@@ -137,6 +138,7 @@ export default function Register() {
                                     id="country"
                                     label="Country"
                                     name="country"
+                                    inputRef={countryRef}
                                     autoComplete="country-name"
                                 />
                             </Grid>
