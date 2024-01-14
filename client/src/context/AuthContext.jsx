@@ -6,7 +6,6 @@ const AuthContext = createContext({
     login: () => {},
     register: () => {},
     logout: () => {},
-    logoutAll: () => {},
     accessToken: "",
 });
 
@@ -22,11 +21,9 @@ export function AuthProvider({ children }) {
                 password,
             });
             console.log(result);
-            setAccessToken(result.data.accessToken);
-            localStorage.setItem(
-                "token",
-                JSON.stringify(result.data.accessToken)
-            );
+            setAccessToken(result.data.token);
+            localStorage.setItem("token", JSON.stringify(result.data.token));
+            return result;
         } catch (error) {
             console.log(error);
             return error;
@@ -36,13 +33,8 @@ export function AuthProvider({ children }) {
         try {
             const result = await axios.post(URL, userInfo);
             console.log(result);
-            setAccessToken(result.data.accessToken);
-            localStorage.setItem(
-                "token",
-                JSON.stringify(result.data.accessToken)
-            );
+            return result;
         } catch (error) {
-            console.log(error);
             return error;
         }
     };
@@ -50,24 +42,6 @@ export function AuthProvider({ children }) {
         try {
             if (accessToken) {
                 await axios.post(URL + "/logout", {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: "Bearer " + accessToken,
-                    },
-                });
-                localStorage.clear();
-                setAccessToken("");
-                navigate("/login");
-            }
-        } catch (error) {
-            console.log(error);
-            return error;
-        }
-    };
-    const logoutAll = async () => {
-        try {
-            if (accessToken) {
-                await axios.post(URL + "/logoutAll", {
                     headers: {
                         "Content-Type": "application/json",
                         Authorization: "Bearer " + accessToken,
@@ -92,7 +66,6 @@ export function AuthProvider({ children }) {
         login,
         register,
         logout,
-        logoutAll,
         accessToken,
     };
     return (

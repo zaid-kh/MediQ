@@ -11,9 +11,14 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { Slide } from "@mui/material";
 import { useAuth } from "../../context/AuthContext";
+import { useState } from "react";
+import { useNavigate } from "react-router";
+import BasicModal from "../../components/BasicModal/BasicModal";
 
 export default function Login() {
+    const [message, setMessage] = useState("");
     const { login } = useAuth();
+    const navigate = useNavigate();
     const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
@@ -21,7 +26,12 @@ export default function Login() {
             email: data.get("email"),
             password: data.get("password"),
         });
-        await login(data.get("email"), data.get("password"));
+        const res = await login(data.get("email"), data.get("password"));
+        if (res.status !== 200) {
+            setMessage(res.response.data);
+        } else {
+            navigate("/dashboard");
+        }
     };
 
     return (
@@ -90,6 +100,7 @@ export default function Login() {
                         </Grid>
                     </Box>
                 </Box>
+                {message && <BasicModal msg={message} setMsg={setMessage} />}
             </Container>
         </Slide>
     );

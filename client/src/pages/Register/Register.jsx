@@ -17,10 +17,14 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useAuth } from "../../context/AuthContext";
+import { useNavigate } from "react-router";
+import BasicModal from "../../components/BasicModal/BasicModal";
+import dayjs from "dayjs";
 
 export default function Register() {
+    const [message, setMessage] = useState("");
     const genderRef = useRef();
     const dateRef = useRef();
     const emailRef = useRef();
@@ -28,6 +32,7 @@ export default function Register() {
     const usernameRef = useRef();
     const countryRef = useRef();
     const { register } = useAuth();
+    const navigate = useNavigate();
     const handleSubmit = async (event) => {
         event.preventDefault();
         const splitDate = dateRef.current.value.split("/");
@@ -43,7 +48,13 @@ export default function Register() {
             gender: genderRef.current.value,
         };
         console.log(userInfo);
-        await register(userInfo);
+        const res = await register(userInfo);
+        console.log(res);
+        if (res?.status !== 201) {
+            setMessage(res.response.data.message);
+        } else {
+            navigate("/login");
+        }
     };
 
     return (
@@ -128,6 +139,7 @@ export default function Register() {
                                     <DatePicker
                                         label="Date of Birth"
                                         inputRef={dateRef}
+                                        defaultValue={dayjs("2024-04-17")}
                                     />
                                 </LocalizationProvider>
                             </Grid>
@@ -160,6 +172,7 @@ export default function Register() {
                         </Grid>
                     </Box>
                 </Box>
+                {message && <BasicModal msg={message} setMsg={setMessage} />}
             </Container>
         </Slide>
     );
