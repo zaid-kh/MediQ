@@ -6,6 +6,8 @@ import Register from "./pages/Register/Register";
 import { Route, Routes } from "react-router-dom";
 import Welcome from "./pages/Welcome/Welcome";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import Profile from "./pages/Profile/Profile";
+import { AuthProvider } from "./context/AuthContext";
 
 function App() {
     const theme = createTheme({
@@ -17,12 +19,14 @@ function App() {
         <>
             <ThemeProvider theme={theme}>
                 <CssBaseline />
-                <Routes>
-                    <Route path="/" element={<Welcome />} />
-                    <Route path="/login" element={<Login />} />
-                    <Route path="/register" element={<Register />} />
-                    <Route path="/dashboard" element = {<Dashboard />} />
-                </Routes>
+                <AuthProvider>
+                    <Routes>
+                        <Route path="/" element={<Welcome />} />
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Register />} />
+                        <Route path="/profile" element={<Profile />} />
+                    </Routes>
+                </AuthProvider>
             </ThemeProvider>
         </>
     );
