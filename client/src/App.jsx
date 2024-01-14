@@ -1,11 +1,10 @@
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-// import "./App.css";
+import "./App.css";
 import Login from "./pages/Login/login";
 import { lightBlue } from "@mui/material/colors";
 import Register from "./pages/Register/Register";
 import { Route, Routes } from "react-router-dom";
 import Welcome from "./pages/Welcome/Welcome";
-import Dashboard from "./pages/Dashboard/Dashboard";
 import Profile from "./pages/Profile/Profile";
 import { AuthProvider } from "./context/AuthContext";
 
