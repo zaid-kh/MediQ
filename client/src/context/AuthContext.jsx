@@ -41,12 +41,6 @@ export function AuthProvider({ children }) {
     const logout = async () => {
         try {
             if (accessToken) {
-                await axios.post(URL + "/logout", {
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: "Bearer " + accessToken,
-                    },
-                });
                 localStorage.clear();
                 setAccessToken("");
                 navigate("/login");

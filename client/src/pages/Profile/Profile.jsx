@@ -17,7 +17,15 @@ export default function Profile() {
         const token = localStorage.getItem("token");
 
         const fetchData = async () => {
-            const result = await axios.get(URL + `/${jwtDecode(token).userId}`);
+            const result = await axios.get(
+                URL + `/${jwtDecode(token).userId}`,
+                {
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: "Bearer " + token,
+                    },
+                }
+            );
             console.log(result.data);
             setUser(result.data);
         };
