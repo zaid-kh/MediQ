@@ -1,21 +1,22 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { IoChatbubbleEllipsesOutline } from 'react-icons/io5';
 import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import AssistantPhotoIcon from '@mui/icons-material/AssistantPhoto';
-import './NavBar.css'; 
+import './NavBar.css';
 
 export default function NavBar() {
   return (
     <div className="navBarContainer">
-      <div className="logoContainer">
+      <Link to="/" className="logoContainer">
         <AssistantPhotoIcon className="logoIcon" />
-      </div>
-      <div className="chatIconContainer">
+      </Link>
+      <Link to="/chat" className="chatIconContainer">
         <IoChatbubbleEllipsesOutline className="chatIcon" fontSize="32px" color="#fff" />
-      </div>
-      <div>
-        <FormatListBulletedIcon sx={{ fontSize: "32px", color: "#fff" }} className="listIcon" />
-      </div>
+      </Link>
+      <Link to="/settings" className="listIcon">
+        <FormatListBulletedIcon sx={{ fontSize: '32px', color: '#fff' }} />
+      </Link>
     </div>
   );
 }
