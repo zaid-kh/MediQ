@@ -9,6 +9,8 @@ import { useAuth } from '../../context/AuthContext';
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { specialties } from '../../../public/data/specialties';
 import { jwtDecode } from "jwt-decode";
+import QuestionComponent from '../../components/Chat/QuestionComponent';
+import AnswerComponent from '../../components/Chat/AnswerComponent';
 const URL = "https://mediq-service.onrender.com/api/v1/users";
 
 function Dashboard() {
@@ -42,7 +44,7 @@ function Dashboard() {
 
   return (
     <>
-       <ThemeProvider theme={theme}>
+       {/* <ThemeProvider theme={theme}>
       <div
         style={{
           display: 'flex',
@@ -80,7 +82,10 @@ function Dashboard() {
       <footer>
         <NavBar />
       </footer>
-      </ThemeProvider>
+      </ThemeProvider> */}
+
+      <QuestionComponent question={"howkf kffj"} />
+      <AnswerComponent answer={"fkfkfk"}/>
     </>
   );
 }
