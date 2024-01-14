@@ -77,12 +77,10 @@ export const userLogin = async (req, res, next) => {
       throw new Error("Incorrect password");
     }
 
-    // Password is correct, generate a token
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
       expiresIn: "1h",
     });
 
-    // Send the token along with a success message
     res
       .status(STATUS_CODE.OK)
       .send({ message: "Login successful", token, user });
@@ -98,7 +96,7 @@ export const getUserProfile = async (req, res, next) => {
       res.status(STATUS_CODE.NOT_FOUND).send("User not found");
       throw new Error("User not found");
     }
-    res.status(STATUS_CODE.OK).send(user);
+    res.status(STATUS_CODE.OK).send({ message: "User access Confirm!", user });
   } catch (error) {
     next(error);
   }
