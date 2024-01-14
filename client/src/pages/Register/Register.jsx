@@ -1,6 +1,5 @@
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
-import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
@@ -18,27 +17,29 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useAuth } from "../../context/AuthContext";
-import { format } from "date-fns";
-import dayjs from "dayjs";
 
 export default function Register() {
-    const [gender, setGender] = useState("");
     const genderRef = useRef();
     const dateRef = useRef();
+    const emailRef = useRef();
+    const passwordRef = useRef();
+    const usernameRef = useRef();
+    const countryRef = useRef();
     const { register } = useAuth();
     const handleSubmit = async (event) => {
         event.preventDefault();
-        const data = new FormData(event.currentTarget);
-        console.log(dateRef.current.value);
-        console.log(genderRef.current.value);
+        const splitDate = dateRef.current.value.split("/");
+        const newDate = [splitDate[2], splitDate[0], splitDate[1]];
+        const selectedDate = newDate.join("-");
+        console.log(selectedDate);
         const userInfo = {
-            email: data.get("email"),
-            password: data.get("password"),
-            username: data.get("username"),
-            yearOfBirth: dateRef.current.value,
-            country: data.get("country"),
+            email: emailRef.current.value,
+            password: passwordRef.current.value,
+            username: usernameRef.current.value,
+            dateOfBirth: selectedDate,
+            country: countryRef.current.value,
             gender: genderRef.current.value,
         };
         console.log(userInfo);
@@ -48,7 +49,6 @@ export default function Register() {
     return (
         <Slide direction="left" in>
             <Container component="main" maxWidth="xs">
-                <CssBaseline />
                 <Box
                     sx={{
                         marginTop: 8,
@@ -65,7 +65,6 @@ export default function Register() {
                     </Typography>
                     <Box
                         component="form"
-                        noValidate
                         onSubmit={handleSubmit}
                         sx={{ mt: 3 }}
                     >
@@ -79,6 +78,7 @@ export default function Register() {
                                     id="username"
                                     label="Display Name"
                                     autoFocus
+                                    inputRef={usernameRef}
                                 />
                             </Grid>
                             <Grid item xs={12}>
@@ -105,6 +105,7 @@ export default function Register() {
                                     id="email"
                                     label="Email Address"
                                     name="email"
+                                    inputRef={emailRef}
                                     autoComplete="email"
                                 />
                             </Grid>
@@ -116,6 +117,7 @@ export default function Register() {
                                     label="Password"
                                     type="password"
                                     id="password"
+                                    inputRef={passwordRef}
                                     autoComplete="new-password"
                                 />
                             </Grid>
@@ -136,6 +138,7 @@ export default function Register() {
                                     id="country"
                                     label="Country"
                                     name="country"
+                                    inputRef={countryRef}
                                     autoComplete="country-name"
                                 />
                             </Grid>
