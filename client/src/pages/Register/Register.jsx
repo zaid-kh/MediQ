@@ -16,13 +16,15 @@ import {
     Slide,
 } from "@mui/material";
 import { useState } from "react";
+import { useAuth } from "../../context/AuthContext";
 
 export default function Register() {
     const [gender, setGender] = useState("");
-    const handleSubmit = (event) => {
+    const { register } = useAuth();
+    const handleSubmit = async (event) => {
         event.preventDefault();
         const data = new FormData(event.currentTarget);
-        console.log({
+        const userInfo = {
             email: data.get("email"),
             password: data.get("password"),
             firstName: data.get("firstName"),
@@ -30,7 +32,9 @@ export default function Register() {
             age: data.get("yearOfBirth"),
             country: data.get("country"),
             gender,
-        });
+        };
+        console.log(userInfo);
+        await register(userInfo);
     };
     const handleChange = (e) => {
         setGender(e.target.value);
