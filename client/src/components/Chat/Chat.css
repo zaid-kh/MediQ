@@ -1,0 +1,28 @@
+
+.chatInputContainer {
+    width: 333px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 30px;
+    box-shadow: 5px 4px 20px 0px rgba(0, 0, 0, 0.13);
+    background-color: #fff;
+    padding: 0px 24px;
+  }
+  
+  .inputField {
+    border: none;
+  }
+  
+  .iconContainer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .iconButton {
+    border: none;
+    background: none;
+  }
+  
