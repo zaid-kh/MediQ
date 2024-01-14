@@ -14,7 +14,7 @@ export default function NavBar() {
       <Link to="/chat" className="chatIconContainer">
         <IoChatbubbleEllipsesOutline className="chatIcon" fontSize="32px" color="#fff" />
       </Link>
-      <Link to="/settings" className="listIcon">
+      <Link to="/profile" className="listIcon">
         <FormatListBulletedIcon sx={{ fontSize: '32px', color: '#fff' }} />
       </Link>
     </div>
