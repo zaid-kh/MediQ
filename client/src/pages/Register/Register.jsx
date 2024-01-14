@@ -131,7 +131,8 @@ export default function Register() {
                   <DatePicker
                     label="Date of Birth"
                     inputRef={dateRef}
-                    defaultValue={dayjs("2024-04-17")}
+                    defaultValue={dayjs("1990-01-01")}
+                    sx={{ width: "100%" }}
                   />
                 </LocalizationProvider>
               </Grid>
