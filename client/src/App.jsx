@@ -1,28 +1,29 @@
-import React from "react";
-import Header from "./components/Header/Header";
-import NavBar from "./components/NavBar/NavBar";
-import SpecialtyCard from "./components/Cards/SpecialtyCard";
-import { green } from "@mui/material/colors";
-import WelcomeBox from "./components/Cards/WelcomeBox";
-import ChatInput from "./components/Chat/ChatInput";
+import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import "./App.css";
+import Login from "./pages/Login/login";
+import { lightBlue } from "@mui/material/colors";
+import Register from "./pages/Register/Register";
+import { Route, Routes } from "react-router-dom";
+import Welcome from "./pages/Welcome/Welcome";
 
 function App() {
-  return (
-    <>
-    <div style={{backgroundColor: "#fff"}}>
-
-    <Header profileImg={"https://tse1.explicit.bing.net/th?id=OIP.icYHueoy2I4AYD8SJOH-0wHaHa&pid=Api&P=0&h=180"} name={"Alaa Muhissen"} />
-    <WelcomeBox />
-    <SpecialtyCard
-     icon={""}
-     color={"#00A859"}
-     backgroundColor={"#fff"}
-     />
-    <NavBar />
-    <ChatInput />
-    </div>
-    </>
-  );
+    const theme = createTheme({
+        palette: {
+            primary: lightBlue,
+        },
+    });
+    return (
+        <>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <Routes>
+                    <Route path="/" element={<Welcome />} />
+                    <Route path="/login" element={<Login />} />
+                    <Route path="/register" element={<Register />} />
+                </Routes>
+            </ThemeProvider>
+        </>
+    );
 }
 
 export default App;
