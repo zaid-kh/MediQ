@@ -1,0 +1,45 @@
+
+.navBarContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 68px;
+    width: 375px;
+    padding: 22px 56px;
+    background-color: #00A859;
+    border-radius: 30px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  }
+  
+  /* .logoContainer {
+   
+  } */
+  
+  .logoIcon {
+    font-size: 32px;
+    color: #fff;
+  }
+  
+  .chatIconContainer {
+    width: 60px;
+    height: 60px;
+    border-radius: 50px;
+    border: 10px solid #fff;
+    background-color: #00A859;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 100px; 
+  }
+  
+  .chatIcon {
+    font-size: 32px;
+    color: #fff;
+  }
+  
+  .listIcon {
+    font-size: 32px;
+    color: #fff;
+  }
+  

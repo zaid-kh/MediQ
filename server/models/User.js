@@ -27,6 +27,16 @@ const userSchema = new mongoose.Schema(
     profilePicture: {
       type: String,
     },
+    dateOfBirth: {
+      type: Date,
+    },
+    country: {
+      type: String,
+    },
+    gender: {
+      type: String,
+      enum: ["Male", "Female", "Other"],
+    },
   },
   { timestamps: true }
 );

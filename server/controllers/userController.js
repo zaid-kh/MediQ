@@ -28,7 +28,7 @@ export const getUserById = async (req, res, next) => {
 };
 
 export const userSignUp = async (req, res, next) => {
-  const { username, email, password } = req.body;
+  const { username, email, password, dateOfBirth, country, gender } = req.body;
   try {
     const existingUser = await User.findOne({ $or: [{ username }, { email }] });
     if (existingUser) {
@@ -45,12 +45,15 @@ export const userSignUp = async (req, res, next) => {
       email,
       password: hashedPassword,
       profilePicture: faker.image.avatarLegacy(),
+      dateOfBirth,
+      country,
+      gender,
     });
     await newUser.save();
 
     res
       .status(STATUS_CODE.CREATED)
-      .send({ message: "User registered successfully" });
+      .send({ message: "User registered successfully", newUser });
   } catch (error) {
     next(error);
   }

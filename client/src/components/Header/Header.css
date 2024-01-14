@@ -1,0 +1,42 @@
+
+.headerContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 8px;
+    padding: 30px;
+  }
+  
+  .profileImageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .profileImage {
+    width: 40px;
+    height: 40px;
+    border-radius: 50px;
+    border: 1px solid #E0E0E0;
+  }
+  
+  .textContainer {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .welcomeText {
+    color: #2E2E2E;
+    font-family: Roboto;
+    font-size: 10px;
+    font-style: normal;
+    font-weight: 400;
+  }
+  
+  .nameText {
+    color: #2E2E2E;
+    font-family: Roboto;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 700;
+  }
+  
