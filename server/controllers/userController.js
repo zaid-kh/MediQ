@@ -2,6 +2,7 @@ import STATUS_CODE from "../constants/statusCode.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import User from "../models/User.js";
+import {faker} from "@faker-js/faker";
 
 export const getAllUsers = async (req, res, next) => {
   try {
@@ -39,7 +40,12 @@ export const userSignUp = async (req, res, next) => {
     }
 
     const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = new User({ username, email, password: hashedPassword });
+    const newUser = new User({
+      username,
+      email,
+      password: hashedPassword,
+      profilePicture: faker.image.avatarLegacy(),
+    });
     await newUser.save();
 
     res
