@@ -8,6 +8,10 @@ import { useTheme } from '@mui/material/styles';
 import { useAuth } from '../../context/AuthContext';
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { specialties } from '../../../public/data/specialties';
+import { jwtDecode } from "jwt-decode";
+import QuestionComponent from '../../components/Chat/QuestionComponent';
+import AnswerComponent from '../../components/Chat/AnswerComponent';
+const URL = "https://mediq-service.onrender.com/api/v1/users";
 
 function Dashboard() {
   const { accessToken, logout } = useAuth();
@@ -15,24 +19,28 @@ function Dashboard() {
   const theme = useTheme();
 
   useEffect(() => {
-    const fetchUserData = async () => {
-      try {
-        if (accessToken) {
-          const response = await axios.get('https://mediq-service.onrender.com/api/v1/user', {
+    const fetchData = async () => {
+      const token = localStorage.getItem('token'); 
+      if (token) {
+        try {
+          const userId = jwtDecode(token).userId;
+          const result = await axios.get(`${URL}/${userId}`, {
             headers: {
-              Authorization: `Bearer ${accessToken}`,
+              'Content-Type': 'application/json',
+              Authorization: `Bearer ${token}`,
             },
           });
-          setUserData(response.data);
+
+          setUserData(result.data);
+          console.log(result.data); 
+        } catch (error) {
+          console.error('Error fetching user data:', error);
+       
         }
-      } catch (error) {
-        console.error('Error fetching user data:', error);
-        logout(); 
       }
     };
-
-    fetchUserData();
-  }, [accessToken, logout]);
+      fetchData();
+  }, []);
 
   return (
     <>
@@ -49,8 +57,8 @@ function Dashboard() {
         }}
       >
         <Header
-          profileImg={userData?.profileImg || 'https://tse4.mm.bing.net/th?id=OIP.wEsBe2udHBieFeZVmus8qAHaHk&pid=Api&P=0&h=180'}
-          name={userData?.name || 'Guest'}
+          profileImg={userData?.profilePicture || 'https://tse4.mm.bing.net/th?id=OIP.wEsBe2udHBieFeZVmus8qAHaHk&pid=Api&P=0&h=180'}
+          name={userData?.username || 'Guest'}
         />
         <WelcomeBox />
         <div
@@ -75,6 +83,8 @@ function Dashboard() {
         <NavBar />
       </footer>
       </ThemeProvider>
+
+    
     </>
   );
 }
