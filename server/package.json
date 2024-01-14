@@ -6,8 +6,13 @@
   "type": "module",
   "scripts": {
     "dev": "node --watch server.js",
+<<<<<<< HEAD
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
+=======
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+>>>>>>> cee85d76f1662124db29d546217e415d39f2b17d
   },
   "keywords": [],
   "author": "",
