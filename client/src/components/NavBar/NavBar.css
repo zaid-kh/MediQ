@@ -2,7 +2,7 @@
 .navBarContainer {
   position: fixed;
   bottom: 0;
-  left: 50%; /* Center the navbar horizontally */
+  left: 50%; 
   transform: translateX(-50%);
   display: flex;
   flex-direction: row;
@@ -11,7 +11,7 @@
   height: 68px;
   width: 375px;
   padding: 22px 56px;
-  background-color: #00A859;
+  background-color: lightblue;
   border-radius: 30px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin-bottom: 22px;
@@ -32,20 +32,20 @@
     height: 60px;
     border-radius: 50px;
     border: 10px solid #fff;
-    background-color: #00A859;
+    background-color: lightblue;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 100px; 
+    margin-bottom: 80px; 
   }
   
   .chatIcon {
     font-size: 32px;
-    color: #fff;
+    color: #ccc;
   }
   
   .listIcon {
     font-size: 32px;
-    color: #fff;
+    color: #ccc;
   }
   
