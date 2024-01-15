@@ -8,6 +8,7 @@ import { useTheme } from '@mui/material/styles';
 import { useAuth } from '../../context/AuthContext';
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { specialties } from '../../../public/data/specialties';
+import Answer from '../../components/chat-answer/Answer';
 
 function Dashboard() {
   const { accessToken, logout } = useAuth();
@@ -70,6 +71,7 @@ function Dashboard() {
           )) 
         }
         </div>
+        <Answer/>
       </div>
       <footer>
         <NavBar />
