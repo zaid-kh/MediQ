@@ -12,8 +12,8 @@ function Header({ profileImg, name }) {
         </div>
 
         <div className="textContainer">
-          <h4 className="welcomeText">Welcome</h4>
-          <p className="nameText">{name}</p>
+          <span className="welcomeText">Welcome</span>
+          <span className="nameText">{name}</span>
         </div>
       </div>
     </>

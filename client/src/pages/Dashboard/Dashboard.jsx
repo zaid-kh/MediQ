@@ -32,7 +32,7 @@ function Dashboard() {
           });
 
           setUserData(result.data);
-          console.log(result.data); 
+        console.log(result.data)
         } catch (error) {
           console.error('Error fetching user data:', error);
        
@@ -44,18 +44,20 @@ function Dashboard() {
 
   return (
     <>
-       <ThemeProvider theme={theme}>
+   
+
       <div
         style={{
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'space-between',
           alignItems: 'flex-start',
           gap: '15px',
           padding: '0px 42px 22px 43px',
-          backgroundColor: theme.palette.background.default, 
+          backgroundColor: '#393C49', 
+          height: '100vh'
         }}
       >
+        
         <Header
           profileImg={userData?.profilePicture || 'https://tse4.mm.bing.net/th?id=OIP.wEsBe2udHBieFeZVmus8qAHaHk&pid=Api&P=0&h=180'}
           name={userData?.username || 'Guest'}
@@ -65,7 +67,8 @@ function Dashboard() {
         style={{
           display:"flex",
           flexWrap:"wrap",
-          justifyContent:"space-between"
+          justifyContent:"space-between",
+          width:"360px"
           
         }}>
         {specialties.map((specialty)=> (
@@ -78,11 +81,10 @@ function Dashboard() {
           )) 
         }
         </div>
-      </div>
       <footer>
         <NavBar />
       </footer>
-      </ThemeProvider>
+      </div>
 
     
     </>

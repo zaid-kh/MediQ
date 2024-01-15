@@ -1,7 +1,9 @@
 import React from 'react'
 import AiAvatar from '../../../public/Group.svg'
 import './Card.css'
+import { useNavigate } from 'react-router-dom'
 function WelcomeBox() {
+  const navigate = useNavigate();
   return (
    <div>
     <div className = "BoxContainer">
@@ -15,6 +17,7 @@ function WelcomeBox() {
         </div>
         <div>
             <button className='StartConversation'
+            onClick={(e)=>{e.preventDefault(); navigate('/chat')}}
        >Start Chat</button>
         </div>
      </div>
