@@ -9,6 +9,7 @@ import { useAuth } from "../../context/AuthContext";
 import { jwtDecode } from "jwt-decode";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import NavBar from "../../components/NavBar/NavBar";
 const URL = "https://mediq-service.onrender.com/api/v1/users";
 export default function Profile() {
     const { logout } = useAuth();
@@ -84,6 +85,7 @@ export default function Profile() {
                     Logout
                 </div>
             </div>
+            <NavBar />
         </div>
     );
 }
