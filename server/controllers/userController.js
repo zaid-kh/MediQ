@@ -43,7 +43,7 @@ export const userSignUp = async (req, res, next) => {
         }
         const emailRegEx = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
         if (!emailRegEx.test(email)) {
-            res.status(STATUS_CODE.CONFLICT).send({
+            return res.status(STATUS_CODE.CONFLICT).send({
                 error: "Conflict",
                 message: `${email} is not a valid email address!`,
             });
