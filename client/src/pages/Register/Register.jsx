@@ -59,7 +59,7 @@ export default function Register() {
 
     return (
         <Slide direction="left" in>
-            <Container component="main" maxWidth="xs">
+            <main className="Register Page">
                 <Box
                     sx={{
                         marginTop: 8,
@@ -71,7 +71,7 @@ export default function Register() {
                     <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
                         <LockOutlinedIcon />
                     </Avatar>
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5" color="#FAFAFA">
                         Sign up
                     </Typography>
                     <Box
@@ -132,18 +132,18 @@ export default function Register() {
                                     autoComplete="new-password"
                                 />
                             </Grid>
-                            <Grid item xs={12} sm={6}>
+                            <Grid item xs={12} sm={4}>
                                 <LocalizationProvider
                                     dateAdapter={AdapterDayjs}
                                 >
                                     <DatePicker
                                         label="Date of Birth"
                                         inputRef={dateRef}
-                                        defaultValue={dayjs("2024-04-17")}
+                                        defaultValue={dayjs("2024-01-01")}
                                     />
                                 </LocalizationProvider>
                             </Grid>
-                            <Grid item xs={12} sm={6}>
+                            <Grid item xs={12} sm={8}>
                                 <TextField
                                     required
                                     fullWidth
@@ -163,9 +163,13 @@ export default function Register() {
                         >
                             Sign Up
                         </Button>
-                        <Grid container justifyContent="flex-end">
+                        <Grid container justifyContent="flex-start">
                             <Grid item>
-                                <Link href="/login" variant="body2">
+                                <Link
+                                    href="/login"
+                                    variant="body2"
+                                    color="#FAFAFA"
+                                >
                                     Already have an account? Sign in
                                 </Link>
                             </Grid>
@@ -173,7 +177,7 @@ export default function Register() {
                     </Box>
                 </Box>
                 {message && <BasicModal msg={message} setMsg={setMessage} />}
-            </Container>
+            </main>
         </Slide>
     );
 }

@@ -1,7 +1,6 @@
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
-
+import { createTheme, ThemeProvider } from "@mui/material";
 import Login from "./pages/Login/login";
-import { lightBlue } from "@mui/material/colors";
+import "./App.css";
 import Register from "./pages/Register/Register";
 import { Route, Routes } from "react-router-dom";
 import Welcome from "./pages/Welcome/Welcome";
@@ -12,13 +11,24 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 function App() {
     const theme = createTheme({
         palette: {
-            primary: lightBlue,
+            mode: "dark",
+            primary: {
+                main: "#3061ff",
+            },
+            secondary: {
+                main: "#1F1D2B",
+            },
+            background: {
+                default: "#393C49",
+            },
+            text: {
+                primary: "#FAFAFA",
+            },
         },
     });
     return (
         <>
             <ThemeProvider theme={theme}>
-                <CssBaseline />
                 <AuthProvider>
                     <Routes>
                         <Route path="/" element={<Welcome />} />
