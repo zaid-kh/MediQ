@@ -36,10 +36,11 @@ export default function Login() {
 
     return (
         <Slide direction="left" in>
-            <Container component="main" maxWidth="xs">
+            <main className="Login Page">
                 <Box
                     sx={{
-                        marginTop: 8,
+                        p: 8,
+                        borderRadius: "6px",
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
@@ -48,7 +49,7 @@ export default function Login() {
                     <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
                         <LockOutlinedIcon />
                     </Avatar>
-                    <Typography component="h1" variant="h5">
+                    <Typography component="h1" variant="h5" color="#FAFAFA">
                         Sign in
                     </Typography>
                     <Box
@@ -77,12 +78,6 @@ export default function Login() {
                             id="password"
                             autoComplete="current-password"
                         />
-                        <FormControlLabel
-                            control={
-                                <Checkbox value="remember" color="primary" />
-                            }
-                            label="Remember me"
-                        />
                         <Button
                             type="submit"
                             fullWidth
@@ -93,7 +88,11 @@ export default function Login() {
                         </Button>
                         <Grid container>
                             <Grid item>
-                                <Link href="/register" variant="body2">
+                                <Link
+                                    href="/register"
+                                    variant="body2"
+                                    color="#FAFAFA"
+                                >
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>
@@ -101,7 +100,7 @@ export default function Login() {
                     </Box>
                 </Box>
                 {message && <BasicModal msg={message} setMsg={setMessage} />}
-            </Container>
+            </main>
         </Slide>
     );
 }
