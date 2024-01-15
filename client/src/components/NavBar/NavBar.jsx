@@ -8,7 +8,7 @@ import "./NavBar.css";
 export default function NavBar() {
     return (
         <div className="navBarContainer">
-            <Link to="/dashboard" className="logoContainer">
+            <Link to="/recommendations" className="logoContainer">
                 <AssistantPhotoIcon className="logoIcon" />
             </Link>
             <Link to="/chat" className="chatIconContainer">
