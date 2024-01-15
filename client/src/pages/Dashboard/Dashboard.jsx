@@ -55,6 +55,10 @@ function Dashboard() {
                     height: "100vh",
                 }}
             >
+              <div style={{
+                    display: "flex",
+                    justifyContent:"flex-start",
+                }}>
                 <Header
                     profileImg={
                         userData?.profilePicture ||
@@ -62,6 +66,7 @@ function Dashboard() {
                     }
                     name={userData?.username || "Guest"}
                 />
+                </div>
                 <WelcomeBox />
                 <div
                     style={{
