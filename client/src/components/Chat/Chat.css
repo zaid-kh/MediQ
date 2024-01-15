@@ -1,19 +1,25 @@
-
 .chatInputContainer {
   position: fixed;
   bottom: 0;
-  left: 50%; 
+  left: 50%;
   transform: translateX(-50%);
-    width: 333px;
-    height: 56px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-radius: 30px;
-    box-shadow: 5px 4px 20px 0px rgba(0, 0, 0, 0.13);
-    background-color: #fff;
-    padding: 0px 24px;
-  }
+  width: 360px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 30px;
+  box-shadow: 5px 4px 20px 0px rgba(123, 123, 123, 0.13);
+  background-color: #1F1D2B;
+  padding: 0px 24px;
+  background: none;
+
+  
+  margin-bottom: 22px;
+}
+.chatInputContainer ::placeholder {
+  color: #d7d7d7;
+}
   
   .inputField {
     border: none;
@@ -29,4 +35,42 @@
     border: none;
     background: none;
   }
+  .question::before {
+    content: '';
+    position: absolute;
+    visibility: visible;
+    top: -1px;
+    right: -10px;
+    border: 10px solid transparent;
+  }
   
+  .question::after {
+    content: '';
+    position: absolute;
+    visibility: visible;
+    top: 0px;
+    right: -8px;
+    border: 10px solid transparent;
+    border-top: 10px solid #1F1D2B;
+    clear: both;
+  }
+  .answer::before {
+    content: '';
+    position: absolute;
+    visibility: visible;
+    bottom: -1px;
+    left: -10px;
+    border: 10px solid transparent;
+   
+  }
+  
+  .answer::after {
+    content: '';
+    position: absolute;
+    visibility: visible;
+    bottom: 0px;
+    left: -8px;
+    border: 10px solid transparent;
+    border-bottom: 10px solid #f0f0f0;
+    clear: both;
+  }

@@ -10,13 +10,18 @@ function ChatInput() {
         placeholder="Write your question"
         type="text"
         className="inputField"
+        style={{
+          background: 'none',
+          outline: "none",
+          color: "#fff"
+        }}
       />
       <div className="iconContainer">
         <button className="iconButton">
-          <MicIcon sx={{ color: "#CECECE", fontSize: "24px" }} />
+          <MicIcon sx={{ color: "#fff", fontSize: "24px" }} />
         </button>
         <button className="iconButton">
-          <IoSend color="#00A859" fontSize="24px" />
+          <IoSend color="rgb(48 97 255)" fontSize="24px" />
         </button>
       </div>
     </div>
