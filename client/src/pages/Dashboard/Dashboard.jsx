@@ -15,81 +15,81 @@ const URL = "https://mediq-service.onrender.com/api/v1/users";
 import Answer from "../../components/chat-answer/Answer";
 
 function Dashboard() {
-  const { accessToken, logout } = useAuth();
-  const [userData, setUserData] = useState(null);
-  const theme = useTheme();
+    const { accessToken, logout } = useAuth();
+    const [userData, setUserData] = useState(null);
+    const theme = useTheme();
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const token = localStorage.getItem("token");
-      if (token) {
-        try {
-          const userId = jwtDecode(token).userId;
-          const result = await axios.get(`${URL}/${userId}`, {
-            headers: {
-              "Content-Type": "application/json",
-              Authorization: `Bearer ${token}`,
-            },
-          });
+    useEffect(() => {
+        const fetchData = async () => {
+            const token = localStorage.getItem("token");
+            if (token) {
+                try {
+                    const userId = jwtDecode(token).userId;
+                    const result = await axios.get(`${URL}/${userId}`, {
+                        headers: {
+                            "Content-Type": "application/json",
+                            Authorization: `Bearer ${token}`,
+                        },
+                    });
 
-          setUserData(result.data);
-          console.log(result.data);
-        } catch (error) {
-          console.error("Error fetching user data:", error);
-        }
-      }
-    };
-    fetchData();
-  }, []);
+                    setUserData(result.data);
+                    console.log(result.data);
+                } catch (error) {
+                    console.error("Error fetching user data:", error);
+                }
+            }
+        };
+        fetchData();
+    }, []);
 
-  return (
-    <>
-      <div
-        style={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "flex-start",
-          gap: "15px",
-          padding: "0px 42px 22px 43px",
-          backgroundColor: "#393C49",
-          height: "100vh",
-        }}
-      >
-        <Header
-          profileImg={
-            userData?.profilePicture ||
-            "https://tse4.mm.bing.net/th?id=OIP.wEsBe2udHBieFeZVmus8qAHaHk&pid=Api&P=0&h=180"
-          }
-          name={userData?.username || "Guest"}
-        />
-        <WelcomeBox />
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            width: "360px",
-          }}
-        >
-          {specialties.map((specialty) => (
-            <SpecialtyCard
-              key={specialty.id}
-              icon={specialty.icon}
-              color={specialty.color}
-              backgroundColor={specialty.background}
-              specialtyName={specialty.specialtyName}
-            />
-          ))}
-        </div>
-        <div>
-          <Answer />
-        </div>
-        <footer>
-          <NavBar />
-        </footer>
-      </div>
-    </>
-  );
+    return (
+        <>
+            <div
+                style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    gap: "15px",
+                    padding: "0px 42px 22px 43px",
+                    backgroundColor: "#393C49",
+                    height: "100vh",
+                }}
+            >
+                <Header
+                    profileImg={
+                        userData?.profilePicture ||
+                        "https://tse4.mm.bing.net/th?id=OIP.wEsBe2udHBieFeZVmus8qAHaHk&pid=Api&P=0&h=180"
+                    }
+                    name={userData?.username || "Guest"}
+                />
+                <WelcomeBox />
+                <div
+                    style={{
+                        display: "flex",
+                        flexWrap: "wrap",
+                        justifyContent: "space-between",
+                        width: "360px",
+                    }}
+                >
+                    {specialties.map((specialty) => (
+                        <SpecialtyCard
+                            key={specialty.id}
+                            icon={specialty.icon}
+                            color={specialty.color}
+                            backgroundColor={specialty.background}
+                            specialtyName={specialty.specialtyName}
+                        />
+                    ))}
+                </div>
+                <div>
+                    <Answer />
+                </div>
+                <footer>
+                    <NavBar />
+                </footer>
+            </div>
+        </>
+    );
 }
 
 export default Dashboard;
