@@ -7,61 +7,59 @@ import axios from "axios";
 import { Slide } from "@mui/material";
 
 function ChatPage() {
-    const [inputValue, setInputValue] = useState("");
-    const [messages, setMessages] = useState([]);
+  const [inputValue, setInputValue] = useState("");
+  const [messages, setMessages] = useState([]);
 
-  const handleSendClick = async(message) => {
-    console.log('Message sent:', message);
+  const handleSendClick = async (message) => {
+    console.log("Message sent:", message);
     try {
       const userMessage = {
         role: "user",
         content: inputValue,
-      }
-      const newMessage  = [...messages, userMessage]
-      const response = await axios.post("https://mediq-service.onrender.com/api/symptoms/analyze", {
-        prompt:newMessage,
-});
+      };
+      const newMessage = [...messages, userMessage];
+      const response = await axios.post(
+        "https://mediq-service.onrender.com/api/symptoms/analyze",
+        {
+          prompt: newMessage,
+        }
+      );
 
+      setMessages((current) => [...current, userMessage, response.data]);
+      console.log(response.data);
+    } catch (error) {}
+  };
 
-            setMessages((current) => [...current, userMessage, response.data]);
-            console.log(response.data);
-        } catch (error) {}
-    };
-
-    return (
-        <Slide direction="up" in>
-            <div
-                style={{
-                    backgroundColor: "#393C49",
-                    height: "100vh",
-                    padding: "20px",
-                }}
-            >
-                <ChatHeader />
-                <div>
-                    {messages &&
-                        messages.map((message, index) => (
-                            <div key={index}>
-                                {message.role === "user" ? (
-                                    <QuestionComponent
-                                        question={message.content}
-                                    />
-                                ) : (
-                                    <AnswerComponent
-                                        answer={[message.content]}
-                                    />
-                                )}
-                            </div>
-                        ))}
-                </div>
-                <ChatInput
-                    inputValue={inputValue}
-                    setInputValue={setInputValue}
-                    onSendClick={handleSendClick}
-                />
-            </div>
-        </Slide>
-    );
+  return (
+    <>
+      <div
+        style={{
+          backgroundColor: "#393C49",
+          minHeight: "100vh",
+          padding: "20px",
+        }}
+      >
+        <ChatHeader />
+        <div style={{ overflow: "hidden", margin: "1rem" }}>
+          {messages &&
+            messages.map((message, index) => (
+              <div key={index}>
+                {message.role === "user" ? (
+                  <QuestionComponent question={message.content} />
+                ) : (
+                  <AnswerComponent answer={[message.content]} />
+                )}
+              </div>
+            ))}
+        </div>
+        <ChatInput
+          inputValue={inputValue}
+          setInputValue={setInputValue}
+          onSendClick={handleSendClick}
+        />
+      </div>
+    </>
+  );
 }
 
 export default ChatPage;
