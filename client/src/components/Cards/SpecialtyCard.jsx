@@ -11,17 +11,17 @@ export default function SpecialtyCard({ icon, color, backgroundColor, specialtyN
   const renderIcon = () => {
     switch (icon) {
       case 'baby':
-        return <FaBaby />;
+        return <FaBaby fontSize="24px" color={backgroundColor}/>;
       case 'mentalHealth':
-        return <RiMentalHealthFill />;
+        return <RiMentalHealthFill fontSize={"24px"} color={backgroundColor} />;
       case 'heartRateMonitor':
-        return <TbHeartRateMonitor />;
+        return <TbHeartRateMonitor fontSize={"24px"} color={backgroundColor} />;
       case 'skeleton':
-        return <GiSkeletonInside />;
+        return <GiSkeletonInside fontSize="24px" color={backgroundColor}/>;
       case 'smileFace':
-        return <HiOutlineFaceSmile />;
+        return <HiOutlineFaceSmile fontSize="24px" color={backgroundColor}/>;
       case 'eye':
-        return <IoEyeSharp />;
+        return <IoEyeSharp fontSize={"24px"} color={backgroundColor}/>;
       default:
         return null;
     }
@@ -29,14 +29,12 @@ export default function SpecialtyCard({ icon, color, backgroundColor, specialtyN
 
   return (
     <div className='SpecialtyCard'>
-      <div style={{ backgroundColor: backgroundColor, marginTop: '20px', width: '20px', height:'20px'}}>
         {renderIcon()}
-      </div>
 
       <div>
-        <h4 className='SpecialtyName'>
+        <span className='SpecialtyName'>
           {specialtyName}
-        </h4>
+        </span>
       </div>
     </div>
   );
