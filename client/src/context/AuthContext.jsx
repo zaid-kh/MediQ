@@ -10,6 +10,7 @@ const AuthContext = createContext({
 });
 
 const URL = "https://mediq-service.onrender.com/api/v1/users";
+const localURL = "http://localhost:3030/api/v1/users";
 export function AuthProvider({ children }) {
     const navigate = useNavigate();
     const [accessToken, setAccessToken] = useState("");

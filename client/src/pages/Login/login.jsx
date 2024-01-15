@@ -14,22 +14,28 @@ import { useAuth } from "../../context/AuthContext";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import BasicModal from "../../components/BasicModal/BasicModal";
+import CircularIndeterminate from "../../components/CircularIndeterminate/CircularIndeterminate";
 
 export default function Login() {
     const [message, setMessage] = useState("");
+    const [isLoading, setIsLoading] = useState(false);
     const { login } = useAuth();
     const navigate = useNavigate();
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setIsLoading((prev) => !prev);
         const data = new FormData(event.currentTarget);
         console.log({
             email: data.get("email"),
             password: data.get("password"),
         });
         const res = await login(data.get("email"), data.get("password"));
+
         if (res.status !== 200) {
+            setIsLoading((prev) => !prev);
             setMessage(res.response.data);
         } else {
+            setIsLoading((prev) => !prev);
             navigate("/dashboard");
         }
     };
@@ -44,6 +50,7 @@ export default function Login() {
                         display: "flex",
                         flexDirection: "column",
                         alignItems: "center",
+                        
                     }}
                 >
                     <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
@@ -55,7 +62,9 @@ export default function Login() {
                     <Box
                         component="form"
                         onSubmit={handleSubmit}
-                        sx={{ mt: 1 }}
+                        sx={{
+                            mt: 1,
+                        }}
                     >
                         <TextField
                             margin="normal"
@@ -78,14 +87,19 @@ export default function Login() {
                             id="password"
                             autoComplete="current-password"
                         />
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Sign In
-                        </Button>
+                        {isLoading ? (
+                            <CircularIndeterminate />
+                        ) : (
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                                disabled={isLoading}
+                            >
+                                Sign In
+                            </Button>
+                        )}
                         <Grid container>
                             <Grid item>
                                 <Link
