@@ -7,7 +7,7 @@ import axios from 'axios'
 
 function ChatPage() {
   const [inputValue, setInputValue] = useState('');
-  const [messages, setMessages] = useState({}); 
+  const [messages, setMessages] = useState([]); 
 
   const handleSendClick = async(message) => {
     console.log('Message sent:', message);
@@ -24,7 +24,7 @@ function ChatPage() {
 
 
         setMessages((current) => [...current,userMessage,response.data]);
-        console.log(message)
+        console.log(response.data)
     } catch (error) {
       
     }
@@ -36,8 +36,16 @@ function ChatPage() {
         <ChatHeader />
      <div>
       
-    <QuestionComponent question={inputValue} />
-    <AnswerComponent answer={messages}/>
+     {messages && messages.map((message, index) => (
+            <div key={index}>
+              {message.role === 'user' ? (
+                <QuestionComponent question={message.content} />
+              ) : (
+                <AnswerComponent answer={[message.content]} />
+              )}
+            </div>
+          ))}
+  
     </div>
     <ChatInput inputValue={inputValue} setInputValue={setInputValue} onSendClick={handleSendClick} />
     </div>
