@@ -6,7 +6,7 @@ import Header from "../../components/Header/Header";
 import axios from "axios";
 import { useTheme } from "@mui/material/styles";
 import { useAuth } from "../../context/AuthContext";
-import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
+import { CssBaseline, Slide, ThemeProvider, createTheme } from "@mui/material";
 import { specialties } from "../../../public/data/specialties";
 import { jwtDecode } from "jwt-decode";
 import QuestionComponent from "../../components/Chat/QuestionComponent";
@@ -44,7 +44,7 @@ function Dashboard() {
     }, []);
 
     return (
-        <>
+        <Slide direction="right" in>
             <div
                 style={{
                     display: "flex",
@@ -56,17 +56,19 @@ function Dashboard() {
                     height: "100vh",
                 }}
             >
-              <div style={{
-                    display: "flex",
-                    justifyContent:"flex-start",
-                }}>
-                <Header
-                    profileImg={
-                        userData?.profilePicture ||
-                        "https://tse4.mm.bing.net/th?id=OIP.wEsBe2udHBieFeZVmus8qAHaHk&pid=Api&P=0&h=180"
-                    }
-                    name={userData?.username || "Guest"}
-                />
+                <div
+                    style={{
+                        display: "flex",
+                        justifyContent: "flex-start",
+                    }}
+                >
+                    <Header
+                        profileImg={
+                            userData?.profilePicture ||
+                            "https://tse4.mm.bing.net/th?id=OIP.wEsBe2udHBieFeZVmus8qAHaHk&pid=Api&P=0&h=180"
+                        }
+                        name={userData?.username || "Guest"}
+                    />
                 </div>
                 <WelcomeBox />
                 <div
@@ -94,7 +96,7 @@ function Dashboard() {
                     <NavBar />
                 </footer>
             </div>
-        </>
+        </Slide>
     );
 }
 
