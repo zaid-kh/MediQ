@@ -6,6 +6,7 @@
     justify-content: start;
     align-items: center;
     gap: 64px;
+    padding: 60px 42px 22px 43px;
 }
 
 .user-info {

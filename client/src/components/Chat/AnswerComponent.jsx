@@ -2,7 +2,8 @@ import { lightBlue } from '@mui/material/colors';
 import React from 'react'
 import { FaUserDoctor } from "react-icons/fa6";
 import './Chat.css'
-function AnswerComponent({ answer }) {
+function AnswerComponent( {answer} ) {
+  console.log(answer)
   return (
     <div  style={{
         display:"flex",

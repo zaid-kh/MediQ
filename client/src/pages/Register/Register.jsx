@@ -21,6 +21,7 @@ import { useAuth } from "../../context/AuthContext";
 import { useNavigate } from "react-router";
 import BasicModal from "../../components/BasicModal/BasicModal";
 import dayjs from "dayjs";
+import CircularIndeterminate from "../../components/CircularIndeterminate/CircularIndeterminate";
 
 export default function Register() {
     const [message, setMessage] = useState("");
@@ -30,10 +31,12 @@ export default function Register() {
     const passwordRef = useRef();
     const usernameRef = useRef();
     const countryRef = useRef();
+    const [isLoading, setIsLoading] = useState(false);
     const { register } = useAuth();
     const navigate = useNavigate();
     const handleSubmit = async (event) => {
         event.preventDefault();
+        setIsLoading((prev) => !prev);
         const splitDate = dateRef.current.value.split("/");
         const newDate = [splitDate[2], splitDate[0], splitDate[1]];
         const selectedDate = newDate.join("-");
@@ -50,8 +53,10 @@ export default function Register() {
         const res = await register(userInfo);
         console.log(res);
         if (res?.status !== 201) {
+            setIsLoading((prev) => !prev);
             setMessage(res.response.data.message);
         } else {
+            setIsLoading((prev) => !prev);
             navigate("/login");
         }
     };
@@ -154,14 +159,18 @@ export default function Register() {
                                 />
                             </Grid>
                         </Grid>
-                        <Button
-                            type="submit"
-                            fullWidth
-                            variant="contained"
-                            sx={{ mt: 3, mb: 2 }}
-                        >
-                            Sign Up
-                        </Button>
+                        {isLoading ? (
+                            <CircularIndeterminate />
+                        ) : (
+                            <Button
+                                type="submit"
+                                fullWidth
+                                variant="contained"
+                                sx={{ mt: 3, mb: 2 }}
+                            >
+                                Sign Up
+                            </Button>
+                        )}
                         <Grid container justifyContent="flex-start">
                             <Grid item>
                                 <Link
