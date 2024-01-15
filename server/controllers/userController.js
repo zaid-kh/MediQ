@@ -18,8 +18,7 @@ export const getUserById = async (req, res, next) => {
     try {
         const user = await User.findById(userId);
         if (!user) {
-            res.status(STATUS_CODE.NOT_FOUND).send("User not found");
-            throw new Error("User not found");
+            return res.status(STATUS_CODE.NOT_FOUND).send("User not found");
         }
         res.status(STATUS_CODE.OK).send(user);
     } catch (error) {
@@ -35,11 +34,10 @@ export const userSignUp = async (req, res, next) => {
             $or: [{ username }, { email }],
         });
         if (existingUser) {
-            res.status(STATUS_CODE.CONFLICT).json({
+            return res.status(STATUS_CODE.CONFLICT).json({
                 error: "Conflict",
                 message: "Username or email is already in use",
             });
-            throw new Error("Username or email is already in use");
         }
         const emailRegEx = new RegExp(/^[^\s@]+@[^\s@]+\.[^\s@]+$/);
         if (!emailRegEx.test(email)) {
@@ -78,13 +76,13 @@ export const userLogin = async (req, res, next) => {
         console.log("user:", user);
 
         if (!user) {
-            res.status(STATUS_CODE.NOT_FOUND).send("User not found");
-            throw new Error("User not found");
+            return res.status(STATUS_CODE.NOT_FOUND).send("User not found");
         }
         const passwordMatch = await bcrypt.compare(password, user.password);
         if (!passwordMatch) {
-            res.status(STATUS_CODE.UNAUTHORIZED).send("Incorrect password");
-            throw new Error("Incorrect password");
+            return res
+                .status(STATUS_CODE.UNAUTHORIZED)
+                .send("Incorrect password");
         }
 
         const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, {
@@ -105,8 +103,7 @@ export const getUserProfile = async (req, res, next) => {
     try {
         const user = await User.findById(req.user.id);
         if (!user) {
-            res.status(STATUS_CODE.NOT_FOUND).send("User not found");
-            throw new Error("User not found");
+            return res.status(STATUS_CODE.NOT_FOUND).send("User not found");
         }
         res.status(STATUS_CODE.OK).send({
             message: "User access Confirm!",
