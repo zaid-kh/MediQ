@@ -16,7 +16,7 @@ export const getAllUsers = async (req, res, next) => {
 export const getUserById = async (req, res, next) => {
     const userId = req.params.userId;
     try {
-        const user = await User.findById(userId);
+        const user = await User.findById(userId).select("-password");
         if (!user) {
             return res.status(STATUS_CODE.NOT_FOUND).send("User not found");
         }
@@ -73,7 +73,6 @@ export const userLogin = async (req, res, next) => {
     try {
         // Find the user by email
         const user = await User.findOne({ email });
-        console.log("user:", user);
 
         if (!user) {
             return res.status(STATUS_CODE.NOT_FOUND).send("User not found");
@@ -92,7 +91,6 @@ export const userLogin = async (req, res, next) => {
         res.status(STATUS_CODE.OK).send({
             message: "Login successful",
             token,
-            user,
         });
     } catch (error) {
         next(error);
