@@ -4,11 +4,16 @@
 
 
 export const getSymptomAnalysis = async (req, res) => {
+  console.log(req.body)
   try {
-    const {prompt ,language} = req.body;
-       const result = await analyzeSymptoms(prompt,language);
-  
-    res.send(result)
+    const {prompt } = req.body;
+       const result = await analyzeSymptoms(prompt);
+       const newreq = {
+        role:'system',
+        content:result
+       }
+       console.log(newreq)
+    res.send(newreq)
     // res.json({ result });
   } catch (error) {
     console.error(error);
