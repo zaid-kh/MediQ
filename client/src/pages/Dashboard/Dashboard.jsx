@@ -12,6 +12,7 @@ import { jwtDecode } from "jwt-decode";
 import QuestionComponent from "../../components/Chat/QuestionComponent";
 import AnswerComponent from "../../components/Chat/AnswerComponent";
 const URL = "https://mediq-service.onrender.com/api/v1/users";
+import Answer from "../../components/chat-answer/Answer";
 
 function Dashboard() {
     const { accessToken, logout } = useAuth();
@@ -79,6 +80,9 @@ function Dashboard() {
                             specialtyName={specialty.specialtyName}
                         />
                     ))}
+                </div>
+                <div>
+                    <Answer />
                 </div>
                 <footer>
                     <NavBar />
