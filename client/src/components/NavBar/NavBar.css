@@ -11,7 +11,7 @@
   height: 68px;
   width: 375px;
   padding: 22px 56px;
-  background-color: lightblue;
+  background-color: #1F1D2B;
   border-radius: 30px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
   margin-bottom: 22px;
@@ -28,11 +28,11 @@
   }
   
   .chatIconContainer {
-    width: 60px;
-    height: 60px;
+    width: 80px;
+    height: 80px;
     border-radius: 50px;
-    border: 10px solid #fff;
-    background-color: lightblue;
+    border: 10px solid #393C49;
+    background-color: rgb(48 97 255);
     display: flex;
     justify-content: center;
     align-items: center;

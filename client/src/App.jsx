@@ -7,6 +7,7 @@ import Welcome from "./pages/Welcome/Welcome";
 import Profile from "./pages/Profile/Profile";
 import { AuthProvider } from "./context/AuthContext";
 import Dashboard from "./pages/Dashboard/Dashboard";
+import ChatPage from "./pages/ChatPage/ChatPage";
 
 function App() {
     const theme = createTheme({
@@ -36,6 +37,7 @@ function App() {
                         <Route path="/register" element={<Register />} />
                         <Route path="/profile" element={<Profile />} />
                         <Route path="/dashboard" element={<Dashboard />} />
+                        <Route path="/chat" element={<ChatPage />} />
                     </Routes>
                 </AuthProvider>
             </ThemeProvider>
