@@ -12,6 +12,7 @@ import { jwtDecode } from "jwt-decode";
 import QuestionComponent from "../../components/Chat/QuestionComponent";
 import AnswerComponent from "../../components/Chat/AnswerComponent";
 const URL = "https://mediq-service.onrender.com/api/v1/users";
+const localURL = "http://localhost:3030/api/v1/users";
 import Answer from "../../components/chat-answer/Answer";
 
 function Dashboard() {
@@ -55,6 +56,10 @@ function Dashboard() {
                     height: "100vh",
                 }}
             >
+              <div style={{
+                    display: "flex",
+                    justifyContent:"flex-start",
+                }}>
                 <Header
                     profileImg={
                         userData?.profilePicture ||
@@ -62,6 +67,7 @@ function Dashboard() {
                     }
                     name={userData?.username || "Guest"}
                 />
+                </div>
                 <WelcomeBox />
                 <div
                     style={{
