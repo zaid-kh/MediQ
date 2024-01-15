@@ -5,8 +5,8 @@
 
 export const getSymptomAnalysis = async (req, res) => {
   try {
-    const {prompt} = req.body;
-       const result = await analyzeSymptoms(prompt);
+    const {prompt ,language} = req.body;
+       const result = await analyzeSymptoms(prompt,language);
   
     res.send(result)
     // res.json({ result });
