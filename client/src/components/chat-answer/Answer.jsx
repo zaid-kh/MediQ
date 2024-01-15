@@ -26,8 +26,7 @@ const Answer = () => {
   };
 
   const handleNavigate = () => {
-    // Navigate to another page (replace '/your-page' with the actual path)
-    // router.push('/your-page');
+    router.push('/chat');
   };
 
   return (
