@@ -10,20 +10,18 @@ function ChatPage() {
     const [inputValue, setInputValue] = useState("");
     const [messages, setMessages] = useState([]);
 
-    const handleSendClick = async (message) => {
-        console.log("Message sent:", message);
-        try {
-            const userMessage = {
-                role: "user",
-                content: inputValue,
-            };
-            const newMessage = [...messages, userMessage];
-            const response = await axios.post(
-                "http://localhost:3030/api/symptoms/analyze",
-                {
-                    prompt: newMessage,
-                }
-            );
+  const handleSendClick = async(message) => {
+    console.log('Message sent:', message);
+    try {
+      const userMessage = {
+        role: "user",
+        content: inputValue,
+      }
+      const newMessage  = [...messages, userMessage]
+      const response = await axios.post("https://mediq-service.onrender.com/api/symptoms/analyze", {
+        prompt:newMessage,
+});
+
 
             setMessages((current) => [...current, userMessage, response.data]);
             console.log(response.data);
