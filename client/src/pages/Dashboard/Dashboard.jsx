@@ -82,9 +82,9 @@ function Dashboard() {
           )) 
         }
         </div>
+          <div>
+          <Answer/>
         </div>
-        <Answer/>
-      </div>
       <footer>
         <NavBar />
       </footer>
