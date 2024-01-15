@@ -17,7 +17,7 @@ function ChatPage() {
         content: inputValue,
       }
       const newMessage  = [...messages, userMessage]
-      const response = await axios.post("http://localhost:3030/api/symptoms/analyze", {
+      const response = await axios.post("https://mediq-service.onrender.com/api/symptoms/analyze", {
         prompt:newMessage,
 });
 

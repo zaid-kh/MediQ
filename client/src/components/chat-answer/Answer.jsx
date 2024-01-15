@@ -17,7 +17,7 @@ const Answer = () => {
 
   const handleFetchData = async () => {
     try {
-      const response = await axios.post('http://localhost:3030/api/symptoms/analyze', { prompt, language });
+      const response = await axios.post('https://mediq-service.onrender.com/api/symptoms/analyze', { prompt, language });
       const data = response.data.split('\n').filter(Boolean); 
       setResults(data);
     } catch (error) {
