@@ -2,8 +2,8 @@
 .headerContainer {
     display: flex;
     flex-direction: row;
-    gap: 8px;
-    padding: 30px;
+    gap: 20px;
+    padding: 30px 5px;
   }
   
   .profileImageContainer {
@@ -16,26 +16,27 @@
     width: 40px;
     height: 40px;
     border-radius: 50px;
-    border: 1px solid #E0E0E0;
+    border: 1px solid #FAFAFA;
   }
   
   .textContainer {
     display: flex;
     flex-direction: column;
+    gap: 5px;
   }
   
   .welcomeText {
-    color: #2E2E2E;
+    color: #FAFAFA;
     font-family: Roboto;
-    font-size: 10px;
+    font-size: 18px;
     font-style: normal;
     font-weight: 400;
   }
   
   .nameText {
-    color: #2E2E2E;
+    color: #FAFAFA;;
     font-family: Roboto;
-    font-size: 12px;
+    font-size: 16px;
     font-style: normal;
     font-weight: 700;
   }
