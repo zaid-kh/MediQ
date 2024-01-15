@@ -36,37 +36,39 @@ export default function Profile() {
         await logout();
     };
     return (
-        <div className="Profile">
+        <div className="Profile Page">
             <div className="user-info">
                 <Avatar
                     src={user?.profilePicture}
                     alt=""
                     sx={{ width: "100px", height: "100px" }}
                 />
-                <Typography variant="h5">{user?.username}</Typography>
-                <Typography variant="h6">{user?.email}</Typography>
-                <Button variant="contained" color="success">
-                    Edit Profile
-                </Button>
+                <Typography variant="h5" color="#FAFAFA">
+                    {user?.username}
+                </Typography>
+                <Typography variant="h6" color="#FAFAFA">
+                    {user?.email}
+                </Typography>
+                <Button variant="contained">Edit Profile</Button>
             </div>
 
             <div className="menu-container">
                 <Link>
-                    <div className="menu-item">
+                    <div className="menu-item" style={{ color: "#FAFAFA" }}>
                         <InboxIcon />
                         History
                     </div>
                 </Link>
                 <Divider orientation="horizontal" sx={{ width: 1 }} />
                 <Link>
-                    <div className="menu-item">
+                    <div className="menu-item" style={{ color: "#FAFAFA" }}>
                         <TranslateIcon />
                         Languages
                     </div>
                 </Link>
                 <Divider orientation="horizontal" sx={{ width: 1 }} />
                 <Link>
-                    <div className="menu-item">
+                    <div className="menu-item" style={{ color: "#FAFAFA" }}>
                         <InfoIcon />
                         About
                     </div>
@@ -75,10 +77,10 @@ export default function Profile() {
 
                 <div
                     className="menu-item"
-                    style={{ color: "red" }}
+                    style={{ color: "#FAFAFA" }}
                     onClick={handleLogout}
                 >
-                    <LogoutIcon color="error" />
+                    <LogoutIcon color="#FAFAFA" />
                     Logout
                 </div>
             </div>
